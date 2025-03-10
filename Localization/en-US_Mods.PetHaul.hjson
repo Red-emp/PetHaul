@@ -1,0 +1,36 @@
+Mods: {
+
+PetHaul: {
+
+LightPetTooltips: {
+SeedStar:
+'''
+Speeds the world around you up by a factor of <world>.
+World speed: <worldLine>
+'''
+				  }
+
+PetTooltips: {
+
+DarkHole:
+'''
+Slows down enemies and projectiles depending on how close they are.
+'''
+MrWrath:
+'''
+GO my superbeam!
+'''
+Rattled:
+'''
+He takes enemies sometimes. I didn't program this, he can just do that.
+'''
+
+
+			 }
+
+
+		 }
+
+
+
+	  }

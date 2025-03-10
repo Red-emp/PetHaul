@@ -1,0 +1,4 @@
+modReferences = PetsOverhaul, CalamityMod, NoxusBoss
+displayName = Wrath of the Pets
+author = RedEmption
+version = 0.1
