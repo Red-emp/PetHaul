@@ -25,54 +25,54 @@ namespace PetHaul.WOTGLightPets
 	{
 
         public override int LightPetItemID => WOTGLightPetIDs.SeedStar;
-        
-        public float speed;
+        public static SeedStarEffect Instance;
+        public float world;
         
 
         public override void PostUpdateEquips()
         {
-            if (Player.miscEquips[1].TryGetGlobalItem(out SeedStarEffect speed))
+            if (Player.miscEquips[1].TryGetGlobalItem(out SeedStarPet speed))
             {
-                speed += world.World.CurrentStatFloat;
+               world += speed.SpeedW.CurrentStatFloat;
                 
             }
         }
-        public static SeedStarEffect Instance;
+        
     }
 
     public sealed class SeedStarPet : LightPetItem
     {
-        public LightPetStat World = new(3, 1.5f, 3.0f);
+        public LightPetStat SpeedW = new(3, 1.5f, 3.0f);
         public override int LightPetItemID => WOTGLightPetIDs.SeedStar;
 
 
         public override void UpdateInventory(Item item, Player player)
         {
-            World.SetRoll(player.luck);           
+            SpeedW.SetRoll(player.luck);           
         }
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            writer.Write((byte)World.CurrentRoll);   
+            writer.Write((byte)SpeedW.CurrentRoll);   
         }
         public override void NetReceive(Item item, BinaryReader reader)
         {
-            World.CurrentRoll = reader.ReadByte();  
+            SpeedW.CurrentRoll = reader.ReadByte();  
         }
         public override void SaveData(Item item, TagCompound tag)
         {
-            tag.Add("Stat1", World.CurrentRoll);       
+            tag.Add("SpeedW", SpeedW.CurrentRoll);       
         }
         public override void LoadData(Item item, TagCompound tag)
         {
-            if (tag.TryGet("Stat1", out int world))
+            if (tag.TryGet("SpeedW", out int speed))
             {
-                World.CurrentRoll = world;
+                SpeedW.CurrentRoll = speed;
             }
         }
-        public override int GetRoll() => World.CurrentRoll;
+        public override int GetRoll() => SpeedW.CurrentRoll;
         public override string PetsTooltip => Language.GetTextValue("Mods.PetHaul.LightPetTooltips.SeedStar")
-            .Replace("<world>", World.ToString())
-            .Replace("<worldLine>", World.ToString());
+            .Replace("<world>", SpeedW.BaseAndPerQuality())
+            .Replace("<worldLine>", SpeedW.StatSummaryLine());
 
 
         /*   public sealed class SeedStar : GlobalItem

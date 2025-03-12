@@ -31,26 +31,22 @@ namespace PetHaul.WOTGPets
         public override PetClasses PetClassPrimary => PetClasses.Utility;
         public int damage = 350;
         public int cooldown = 20;
-    
 
-
-        // private int internalCooldownToInitiateAttack = 0;
+       
 
         public override void PostUpdateMiscEffects()
         {
             if (Pet.PetInUseWithSwapCd(WOTGPetIDs.MrWrath))
-            {
-                //  Player.buffImmune[BuffID.Obstructed] = false;
-                // Player.AddBuff(BuffID.Obstructed, 1);
-                
+            {          
 
                 NamelessDeityDimensionSkyGenerator.InProximityOfMonolith = true;
                 NamelessDeityDimensionSkyGenerator.TimeSinceCloseToMonolith = 5;
             }
 
+
             if (Pet.AbilityPressCheck() && PetIsEquipped())
             {
-                
+                SoundEngine.PlaySound(new SoundStyle("NoxusBoss/Assets/Sounds/Custom/Genesis/GenesisFire"));
                 Projectile petProjectile = Projectile.NewProjectileDirect(GlobalPet.GetSource_Pet(EntitySourcePetIDs.PetProjectile), Player.Center, new Vector2(Main.MouseWorld.X - Player.Center.X, Main.MouseWorld.Y - Player.Center.Y) * 0, ModContent.ProjectileType<GenesisOmegaDeathray>(), Pet.PetDamage(damage, DamageClass.Generic), 4f, Player.whoAmI);
                 petProjectile.DamageType = DamageClass.Generic;
                 petProjectile.CritChance = (int)Player.GetTotalCritChance(DamageClass.Generic);
@@ -58,6 +54,8 @@ namespace PetHaul.WOTGPets
                 petProjectile.hostile = false; 
                 petProjectile.friendly = true;
                 
+                
+                petProjectile.height = 6400;
 
             }
 

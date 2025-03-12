@@ -57,11 +57,11 @@ namespace PetHaul.WOTGPets
                 {
                     if (Player.Distance(npc.Center) < oneRange && Player.Distance(npc.Center) > twoRange)
                     {
-                        NpcPet.AddSlow(new NpcPet.PetSlow(oneSlow, 1, PetSlowIDs.Grinch), npc);
+                        NpcPet.AddSlow(new NpcPet.PetSlow(oneSlow, 1, PetSlowIDs.IndependentSlow), npc);
                     }
                     else if (Player.Distance(npc.Center) < twoRange && Player.Distance(npc.Center) > threeRange)
                     {
-                        NpcPet.AddSlow(new NpcPet.PetSlow(twoSlow, 1, PetSlowIDs.PrinceSlime), npc);
+                        NpcPet.AddSlow(new NpcPet.PetSlow(twoSlow, 1, PetSlowIDs.IndependentSlow), npc);
                     }
                     else if (Player.Distance(npc.Center) < threeRange)
                     {
@@ -74,11 +74,11 @@ namespace PetHaul.WOTGPets
                 {
                     if (Player.Distance(projectile.Center) < oneRange && Player.Distance(projectile.Center) > twoRange)
                     {
-                        SlowProj.AddSlow(new SlowProj.PetSlow(onepSlow, 1, PetSlowIDs.Grinch), projectile);
+                        SlowProj.AddSlow(new SlowProj.PetSlow(onepSlow, 1, PetSlowIDs.IndependentSlow), projectile);
                     }
                     else if (Player.Distance(projectile.Center) < twoRange && Player.Distance(projectile.Center) > threeRange)
                     {
-                        SlowProj.AddSlow(new SlowProj.PetSlow(twopSlow, 1, PetSlowIDs.PrinceSlime), projectile);
+                        SlowProj.AddSlow(new SlowProj.PetSlow(twopSlow, 1, PetSlowIDs.IndependentSlow), projectile);
                     }
                     else if (Player.Distance(projectile.Center) < threeRange)
                     {

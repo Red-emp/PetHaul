@@ -25,12 +25,11 @@ namespace PetHaul.Systems
     {
         
         public override void PostUpdateWorld()
-        {
-            
-                Main.time += (double)SeedStarEffect.Instance.speed;           
+        {            
+                Main.time += (double)SeedStarEffect.Instance.world;           
         }
 
     }
+   
 
-    
 }

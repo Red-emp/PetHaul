@@ -48,6 +48,50 @@ namespace PetHaul.Systems
         public bool VeloChangedGround2 { get; internal set; }
 
 
+        
+        public override void Load()
+        {
+            PetHaul.BeforeProjectilePreAI += UpdateSlows;
+        }
+
+        public static void UpdateSlows(Projectile projectile)
+        {
+            if (projectile.active && projectile.TryGetGlobalProjectile(out SlowProj npcPet))
+            {
+                if (npcPet.VeloChangedGround == true)
+                {
+                  // projectile.velocity = npcPet.GroundVelo;
+
+                    npcPet.VeloChangedGround2 = true;
+                }
+                else
+                {
+                    npcPet.VeloChangedGround2 = false;
+                }
+
+                if (npcPet.VeloChangedGround2 == false)
+                {
+                   // npcPet.GroundVelo = projectile.velocity;
+                }
+
+                if (npcPet.VeloChangedFlying == true)
+                {
+                    projectile.velocity = npcPet.FlyingVelo;
+
+                    npcPet.VeloChangedFlying2 = true;
+                }
+                else
+                {
+                    npcPet.VeloChangedFlying2 = false;
+                }
+
+                if (npcPet.VeloChangedFlying2 == false)
+                {
+                    npcPet.FlyingVelo = projectile.velocity;
+                }
+            }
+        }
+
         public override void PostAI(Projectile projectile)
         {
             if (projectile.active)
@@ -92,45 +136,6 @@ namespace PetHaul.Systems
                 }
             }
         }
-
-        public static void UpdateSlows(Projectile projectile)
-        {
-            if (projectile.active && projectile.TryGetGlobalProjectile(out SlowProj npcPet))
-            {
-                if (npcPet.VeloChangedGround == true)
-                {
-                  // projectile.velocity = npcPet.GroundVelo;
-
-                    npcPet.VeloChangedGround2 = true;
-                }
-                else
-                {
-                    npcPet.VeloChangedGround2 = false;
-                }
-
-                if (npcPet.VeloChangedGround2 == false)
-                {
-                   // npcPet.GroundVelo = projectile.velocity;
-                }
-
-                if (npcPet.VeloChangedFlying == true)
-                {
-                    projectile.velocity = npcPet.FlyingVelo;
-
-                    npcPet.VeloChangedFlying2 = true;
-                }
-                else
-                {
-                    npcPet.VeloChangedFlying2 = false;
-                }
-
-                if (npcPet.VeloChangedFlying2 == false)
-                {
-                    npcPet.FlyingVelo = projectile.velocity;
-                }
-            }
-        }
-
 
         internal void Slow(Projectile projectile, float slow)
         {
