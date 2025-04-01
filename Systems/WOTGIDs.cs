@@ -12,7 +12,7 @@ using PetsOverhaul.PetEffects;
 using PetsOverhaul.Systems;
 using Terraria.ID;
 using PetHaul.Systems;
-using PetHaul.WOTGPets;
+
 
 namespace PetHaul.Systems
 {

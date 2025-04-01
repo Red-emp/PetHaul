@@ -1,0 +1,31 @@
+Mods: {
+	PetHaul: {
+		PetTooltips: {
+			BlackHole:
+				'''
+				<class>
+				- Slows down enemies and projectiles 
+				depending on how close they are.
+				- Slow levels <won> / <too> / <threy>
+				'''
+			Erilucyxwyn:
+				'''
+				<class>
+				- Press <keybind> to cast a Genesis Omega Deathray that deals massive 
+				damage to everything on a <cooldown> second cooldown.
+				'''
+			OblivionChime:
+				'''
+				<class>
+				- Gives you <stelth> max stealth.
+				- sometimes takes enemies (I don't know how).
+				'''
+		}
+
+		LightPetTooltips.Starseed:
+			'''
+			Speeds the world around you up by a factor of <world>.
+			World speed: <worldLine>
+			'''
+	}
+}

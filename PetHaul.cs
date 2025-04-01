@@ -30,6 +30,8 @@ namespace PetHaul
         public override void Load()
 		{
             Compatibility.AddPetItemNames();
+            Compatibility.AddWOTGSoundEffects();
+
             hooks.Add(new(PreAIInfo, ProjectileLoaderPreAIDetour));
             foreach (Hook hook in hooks)
             {

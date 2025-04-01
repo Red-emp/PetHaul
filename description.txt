@@ -1,1 +1,9 @@
-Modify this file with a description of your mod.
+This is an unofficial addon to the Pets Overhaul mod for Wrath of the Gods. It adds unique effects to the 4 pets in the mod.
+
+A hundred million thanks to Pearlying for creating the original mod, the Calamity addon, and for help in this mod too!
+
+Discord server for Pets Overhaul: https://discord.gg/KubSpqvDGE
+
+Source code for my mod can be found here: https://github.com/Red-emp/PetHaul
+
+I made this icon!

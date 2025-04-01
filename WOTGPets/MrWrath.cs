@@ -5,21 +5,20 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using NoxusBoss.Content.Items.Pets;
-using NoxusBoss.Core.CrossCompatibility.Inbound;
 using PetHaul.Systems;
 using PetHaul.WOTGPets;
 using NoxusBoss.Content.NPCs.Bosses.NamelessDeity.SpecificEffectManagers;
-using Terraria.GameInput;
-using NoxusBoss.Content.Projectiles.Visuals;
 using Microsoft.Xna.Framework;
-using Terraria.GameInput;
-using NoxusBoss.Core.BaseEntities;
 using NoxusBoss.Content.Projectiles;
+using PetsOverhaul.PetEffects;
+using CalamityMod;
+using NoxusBoss.Content.NPCs.Bosses.NamelessDeity.Projectiles;
+using NoxusBoss.Content.NPCs.Bosses.NamelessDeity;
+using NoxusBoss.Core.AdvancedProjectileOwnership;
+
+
 
 namespace PetHaul.WOTGPets
 {
@@ -28,9 +27,9 @@ namespace PetHaul.WOTGPets
     {
         public override int PetItemID => WOTGPetIDs.MrWrath;
 
-        public override PetClasses PetClassPrimary => PetClasses.Utility;
-        public int damage = 350;
-        public int cooldown = 20;
+        public override PetClasses PetClassPrimary => PetClasses.Offensive;
+        public int damage = 1700;
+        public int cooldown = 100;
 
        
 
@@ -38,7 +37,6 @@ namespace PetHaul.WOTGPets
         {
             if (Pet.PetInUseWithSwapCd(WOTGPetIDs.MrWrath))
             {          
-
                 NamelessDeityDimensionSkyGenerator.InProximityOfMonolith = true;
                 NamelessDeityDimensionSkyGenerator.TimeSinceCloseToMonolith = 5;
             }
@@ -46,46 +44,48 @@ namespace PetHaul.WOTGPets
 
             if (Pet.AbilityPressCheck() && PetIsEquipped())
             {
-                SoundEngine.PlaySound(new SoundStyle("NoxusBoss/Assets/Sounds/Custom/Genesis/GenesisFire"));
-                Projectile petProjectile = Projectile.NewProjectileDirect(GlobalPet.GetSource_Pet(EntitySourcePetIDs.PetProjectile), Player.Center, new Vector2(Main.MouseWorld.X - Player.Center.X, Main.MouseWorld.Y - Player.Center.Y) * 0, ModContent.ProjectileType<GenesisOmegaDeathray>(), Pet.PetDamage(damage, DamageClass.Generic), 4f, Player.whoAmI);
-                petProjectile.DamageType = DamageClass.Generic;
-                petProjectile.CritChance = (int)Player.GetTotalCritChance(DamageClass.Generic);
-                Pet.timer = Pet.timerMax;
-                petProjectile.hostile = false; 
-                petProjectile.friendly = true;
+                 SoundEngine.PlaySound(new SoundStyle("NoxusBoss/Assets/Sounds/Custom/Genesis/GenesisFire"));
+                 Projectile petProjectile = Projectile.NewProjectileDirect(GlobalPet.GetSource_Pet(EntitySourcePetIDs.PetProjectile), Player.Center, new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y) * 0, ModContent.ProjectileType<GenesisOmegaDeathray>(), Pet.PetDamage(damage, DamageClass.Generic), 0f, Player.whoAmI);
+                 petProjectile.DamageType = DamageClass.Generic;
+                 petProjectile.CritChance = (int)Player.GetTotalCritChance(DamageClass.Generic);
+                 Pet.timer = Pet.timerMax;
+                 petProjectile.hostile = false; 
+                 petProjectile.friendly = true;
+                 petProjectile.ExpandHitboxBy(600,0);
+                 petProjectile.height = 4000;
+                 petProjectile.localNPCHitCooldown = 1;
+                 petProjectile.usesLocalNPCImmunity = true;
+                 petProjectile.ResetLocalNPCHitImmunity();
                 
                 
-                petProjectile.height = 6400;
-
+                
             }
-
+            
 
         }
-
-        
 
         public override int PetAbilityCooldown => cooldown;
 
 
-        public sealed class MrWrathGuy : GlobalItem
+        public sealed class Erilucyxwyn : PetTooltip
         {
-            public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-            {
-                return entity.type == WOTGPetIDs.MrWrath;
-            }
-            /*
-            public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-            {
-                if (ModContent.GetInstance<PetPersonalization>().EnableTooltipToggle && !PetKeybinds.PetTooltipHide.Current)
-                {
-                    return;
-                }
+            public override PetEffect PetsEffect => mrWrath;
 
-                DarkHoleEffect darkholed = Main.LocalPlayer.GetModPlayer<DarkHoleEffect>();
-                tooltips.Add(new(Mod, "Tooltip0", Language.GetTextValue("Mods.PetsOverhaul.PetItemTooltips.CompanionCube")
-                            ));
+            public static MrWrathEffect mrWrath
+            {
+                get
+                {
+                    if (Main.LocalPlayer.TryGetModPlayer(out MrWrathEffect pet))
+                        return pet;
+                    else
+                        return ModContent.GetInstance<MrWrathEffect>();
+                }
             }
-            */
+
+            public override string PetsTooltip => Language.GetTextValue("Mods.PetHaul.PetTooltips.Erilucyxwyn")
+                .Replace("<keybind>", PetTextsColors.KeybindText(PetKeybinds.UsePetAbility))
+                .Replace("<cooldown>", mrWrath.cooldown.ToString());
+               
         }
     }
 }

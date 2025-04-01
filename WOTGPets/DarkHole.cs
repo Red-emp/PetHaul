@@ -32,10 +32,9 @@ namespace PetHaul.WOTGPets
     {
         public override int PetItemID => WOTGPetIDs.DarkHole;
 
-        public override PetClasses PetClassPrimary => PetClasses.Utility;
-        public override PetClasses PetClassSecondary => PetClasses.Offensive;
+        public override PetClasses PetClassPrimary => PetClasses.Defensive;
 
-        public int oneRange = 800;
+        public int oneRange = 600;
         public int twoRange = 400;
         public int threeRange = 200;
         public float oneSlow = 0.9f;
@@ -49,9 +48,12 @@ namespace PetHaul.WOTGPets
         {
             if (PetIsEquipped())
             {
-                GlobalPet.CircularDustEffect(Player.Center, DustID.Snow, oneRange, 20);
-                GlobalPet.CircularDustEffect(Player.Center, DustID.RedTorch, twoRange, 20);
-                GlobalPet.CircularDustEffect(Player.Center, DustID.Shadowflame, threeRange, 20);
+
+                
+
+                GlobalPet.CircularDustEffect(Player.Center, DustID.Ash, oneRange, 20);
+                GlobalPet.CircularDustEffect(Player.Center, DustID.Ash, twoRange, 20);
+                GlobalPet.CircularDustEffect(Player.Center, DustID.Ash, threeRange, 20);
 
                 foreach (var npc in Main.ActiveNPCs)
                 {
@@ -87,66 +89,29 @@ namespace PetHaul.WOTGPets
 
                 }
 
-
-
-
             }
         }
     }
 
-   /* public sealed class SlowNPC : GlobalNPC
+    public sealed class BlackyHole : PetTooltip
     {
-        public override bool InstancePerEntity => true;
-        
+        public override PetEffect PetsEffect => darkHole;
 
-        
-        public override bool PreAI(NPC npc)
+        public static DarkHoleEffect darkHole
         {
-            //if (!npc.Active) return false;
-
-            if (this.Owner.HasBuff(BlackHole.BuffID))
+            get
             {
-                float remainderAfterThisPass = 2 - (float)this.go;
-                if (remainderAfterThisPass < 1f && Utils.NextFloat(Main.rand) > remainderAfterThisPass)
-                {
-                    this.go--;
-                    return true;
-                }
-                this.go++;
-                npc.AI();
-                float speedToAdd = 0.5f;
-                Vector2 newPos = npc.position - npc.velocity * speedToAdd;
-                if (npc.noTileCollide || !Collision.SolidCollision(newPos, npc.width, npc.height))
-                {
-                    npc.position = newPos;
-                }
-
-                return true;
+                if (Main.LocalPlayer.TryGetModPlayer(out DarkHoleEffect pet))
+                    return pet;
+                else
+                    return ModContent.GetInstance<DarkHoleEffect>();
             }
         }
-        private int go = 1;
-    }
-   */
-    public sealed class DarkHole : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == WOTGPetIDs.DarkHole;
-        }
 
+        public override string PetsTooltip => Language.GetTextValue("Mods.PetHaul.PetTooltips.BlackHole")
+            .Replace("<won>", darkHole.oneSlow.ToString())
+            .Replace("<too>", darkHole.twoSlow.ToString())
+            .Replace("<threy>", darkHole.threeSlow.ToString());
 
-        /*
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (ModContent.GetInstance<PetPersonalization>().EnableTooltipToggle && !PetKeybinds.PetTooltipHide.Current)
-            {
-                return;
-            }
-
-            DarkHoleEffect darkholed = Main.LocalPlayer.GetModPlayer<DarkHoleEffect>();
-            tooltips.Add(new(Mod, "Tooltip0", Language.GetTextValue("Mods.PetsOverhaul.PetItemTooltips.CompanionCube")
-                        ));
-        }
-        */
     }
 }

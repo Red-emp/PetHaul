@@ -18,10 +18,7 @@
 	    <HintPath>..\..\ModReader\NoxusBoss\NoxusBoss.dll</HintPath>
 	  </Reference>
 	  <Reference Include="PetsOverhaul">
-	    <HintPath>..\..\ModReader\PetsOverhaul\PetsOverhaul.dll</HintPath>
-	  </Reference>
-	  <Reference Include="PetsOverhaulCalamityAddon">
-	    <HintPath>..\..\ModReader\PetsOverhaulCalamityAddon\PetsOverhaulCalamityAddon.dll</HintPath>
+	    <HintPath>..\ModAssemblies\PetsOverhaul_v3.4.3.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 	<ItemGroup>
