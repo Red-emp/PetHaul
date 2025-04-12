@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
@@ -19,6 +19,9 @@
 	  </Reference>
 	  <Reference Include="PetsOverhaul">
 	    <HintPath>..\ModAssemblies\PetsOverhaul_v3.4.3.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PetsOverhaulCalamityAddon">
+	    <HintPath>..\..\ModReader\PetsOverhaulCalamityAddon\PetsOverhaulCalamityAddon.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 	<ItemGroup>
