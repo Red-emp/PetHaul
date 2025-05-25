@@ -29,7 +29,7 @@ namespace PetHaul.WOTGPets
 
         public override PetClasses PetClassPrimary => PetClasses.Offensive;
         public int damage = 1700;
-        public int cooldown = 100;
+        public int cooldown = 1900;
 
        
 

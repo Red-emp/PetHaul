@@ -7,3 +7,12 @@ Discord server for Pets Overhaul: https://discord.gg/KubSpqvDGE
 Source code for my mod can be found here: https://github.com/Red-emp/PetHaul
 
 I made this icon!
+
+v0.2
+Nameless Pet has an actual cooldown now.
+
+Somewhat nerfed Starseed effectiveness
+
+Check out the pineapple effect on the cinnamon rollyn :)
+
+Tried to fix black hole projectile slowing. I failed.

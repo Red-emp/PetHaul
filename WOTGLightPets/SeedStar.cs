@@ -35,7 +35,7 @@ namespace PetHaul.WOTGLightPets
         }
         public sealed class SeedStarPet : LightPetItem
         {
-            public LightPetStat SpeedW = new(3, 1.5f, 4.0f);
+            public LightPetStat SpeedW = new(3, 1.0f, 3.0f);
             public LightPetStat Uped = new(5, 5, 10);
             public override int LightPetItemID => WOTGLightPetIDs.SeedStar;
 

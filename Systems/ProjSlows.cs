@@ -33,6 +33,7 @@ namespace PetHaul.Systems
         }
 
         public override bool InstancePerEntity => true;
+        //public override bool InstancePerProjectile => true;
         public List<PetSlow> SlowList = new();
 
         public float CurrentSlowAmount { get; internal set; }

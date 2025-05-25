@@ -22,6 +22,16 @@ Mods: {
 				'''
 		}
 
+		Buffs: {
+			SuperStarstrikinglySatiatedTooltip: You feel the universe in your belly.
+			SuperStarstrikinglySatiatedDisplayName: Super Starstrikingly Satiated
+
+			SuperStarstrikinglySatiated: {
+				DisplayName: Super Starstrikingly Satiated
+				Description: Mods.PetHaul.Buffs.SuperStarstrikinglySatiated.Description
+			}
+		}
+
 		LightPetTooltips.Starseed:
 			'''
 			Speeds the world around you up by a factor of <world>.
